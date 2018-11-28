@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:bhv="clr-namespace:CustomerServiceMobile.Behaviors"
+             x:Class="CustomerServiceMobile.Views.CustomerListView"
+             x:Name="vCustomerListView"
+             BindingContext="{Binding Source={StaticResource Key=ViewModelLocator},Path=CustomerListViewModel}"
+             BackgroundColor="{StaticResource BackgroudBlue}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding NewItemCreationCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ListView
+            ItemsSource="{Binding CustomerCollection}"
+            CachingStrategy="RecycleElement"
+            RowHeight="130">
+        <ListView.Behaviors>
+            <bhv:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemSelectedCommand}" CommandParameter="ItemTappedEventArgs"/>
+        </ListView.Behaviors>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" 
+                       BackgroundColor="White" HasShadow="true"
+                       CornerRadius="10" Margin="5,7,5,7"
+                       >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}"
+                                   VerticalOptions="Center"  Margin="10,0,0,0"
+                                   Style="{StaticResource BoldLabel}"/>
+                            <Button Grid.Column="1" CommandParameter="{Binding PhoneNumber}" Style="{StaticResource RegularButton}" 
+                                    Text="CALL"
+                                    Command="{Binding Path=BindingContext.PhoneCommand, Source={x:Reference Name=vCustomerListView}}"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding Address}"
+                                   VerticalOptions="Center"  Margin="10,0,0,0"
+                                   Style="{StaticResource RegularLabel}"/>
+                            <Button Grid.Row="1" Grid.Column="1" CommandParameter="{Binding Id}" Style="{StaticResource RegularButton}" Text="DELETE"
+                                    Command="{Binding Path=BindingContext.DeleteCustomerCommand, Source={x:Reference Name=vCustomerListView}}"/>
+                        </Grid>
+                    </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

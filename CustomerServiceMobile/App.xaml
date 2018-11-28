@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:util="clr-namespace:CustomerServiceMobile.Utility"
+             xmlns:conv="clr-namespace:CustomerServiceMobile.Converters"
+             x:Class="CustomerServiceMobile.App">
+    <Application.Resources>
+        <Color x:Key="BackgroudBlue">LightBlue</Color>
+        
+        <Style x:Key="HeaderStyle" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="RegularLabel" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="TextColor" Value="DarkGray" />
+        </Style>
+
+        <Style x:Key="BoldLabel" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="21"></Setter>
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="CustomerEntryStyle" TargetType="{x:Type Entry}">
+            <Setter Property="HorizontalTextAlignment" Value="Start"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="HeightRequest" Value="50"></Setter>
+            <Setter Property="PlaceholderColor" Value="Gray"></Setter>
+            <Setter Property="TextColor" Value="Black"></Setter>
+        </Style>
+        
+        <Style x:Key="RegularButton" TargetType="{x:Type Button}">
+            <Setter Property="BackgroundColor" Value="MediumPurple"></Setter>
+            <Setter Property="TextColor" Value="LightBlue"></Setter>
+            <Setter Property="VerticalOptions" Value="Center"></Setter>
+        </Style>
+        
+        <util:ViewModelLocator x:Key="ViewModelLocator"/>
+        <conv:MenuItemIdToIconConverter x:Key="MenuItemIdToIconConverter"/>
+        <conv:BoolToTextForButtonConverter x:Key="BoolToTextForButtonConverter"/>
+        <conv:BoolToTextForCustomerLabelConverter x:Key="BoolToTextForCustomerLabelConverter"/>
+    </Application.Resources>
+</Application>
